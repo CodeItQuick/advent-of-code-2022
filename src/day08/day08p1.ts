@@ -1,8 +1,8 @@
 export default class Grid {
-    private grid: string[];
+    private grid: number[][];
 
     constructor(grid: string[]) {
-        this.grid = grid;
+        this.grid = grid.map(x => x.split('').map(x => +x));
     }
 
     isVisibleLeft(row: number, col: number) {
@@ -17,7 +17,7 @@ export default class Grid {
 
     private checkDirectionDecr(startCol: number, startRow: number, endCol: number, incr: number) {
         let initialize = true;
-        const tree = this.grid[startRow].split('').map(x => +x);
+        const tree = this.grid[startRow];
         for (let i = startCol; i > endCol; i = i + incr) {
             initialize = initialize && (+tree[i + incr] <
                 +tree[i]);
@@ -26,13 +26,10 @@ export default class Grid {
     }
     private checkDirectionIncr(startCol: number, startRow: number, endCol: number, incr: number) {
         let initialize = true;
-        const tree = this.grid[startRow].split('').map(x => +x);
+        const tree = this.grid[startRow];
         for (let i = startCol; i < endCol; i = i + incr) {
-            console.log(tree[i + incr])
-            console.log(tree[i])
             initialize = initialize && (+tree[i + incr] <
                 +tree[i]);
-            console.log(initialize)
         }
         return initialize;
     }
