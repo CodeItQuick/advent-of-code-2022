@@ -19,11 +19,8 @@ export default class Grid {
         let initialize = true;
         const tree = this.grid[startRow].split('').map(x => +x);
         for (let i = startCol; i > endCol; i = i + incr) {
-            console.log(tree[i + incr])
-            console.log(tree[i])
             initialize = initialize && (+tree[i + incr] <
                 +tree[i]);
-            console.log(initialize)
         }
         return initialize;
     }
